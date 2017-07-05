@@ -1,10 +1,11 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: {
-    js: [  `./src/index.js`],
-    test_css: [ `./style/main.scss`]
+  entry: { 
+    js: ['./src/index.js'],
+    css: ['./style/main.scss']
   },
+  devtools: 'source-map',
   output: {
     path: __dirname,
     publicPath: '/',
@@ -13,6 +14,7 @@ module.exports = {
   module: {
       loaders: [
       {
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
@@ -28,14 +30,14 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin('css/style.css')
-  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin('css/style.css')
+  ],
 };
