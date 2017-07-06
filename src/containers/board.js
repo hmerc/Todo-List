@@ -11,12 +11,6 @@ class Board extends Component {
 		this.props.getTasks();
 	}
 
-	componentWillUpdate(nextProps, nextState) {
-		if(nextProps.TODO.length > 1){
-			this.props.getTasks();
-		}
-	}
-
 	renderTasks(tasksArray) {
 		return tasksArray.map((task) => {
 			return(
@@ -29,13 +23,23 @@ class Board extends Component {
 
 	}
 
-
 	render() {
     	return (
-      		<div className="board">
-      			<div className="board__column">{this.renderTasks(this.props.TODO)}</div>
-      			<div className="board__column">{this.renderTasks(this.props.PROGRESS)}</div>
-      			<div className="board__column">{this.renderTasks(this.props.DONE)}</div>
+    		<div>
+      			<div className="board">
+      				<div className="board__column">
+      					<h2>To Do [{this.props.TODOHOURS} Hours]</h2>
+      					{this.renderTasks(this.props.TODO)}
+      				</div>
+      				<div className="board__column">
+      					<h2>Progress [{this.props.PROGRESSHOURS} Hours]</h2>
+      					{this.renderTasks(this.props.PROGRESS)}
+      				</div>
+      				<div className="board__column">
+      					<h2>Done</h2>
+      					{this.renderTasks(this.props.DONE)}
+      				</div>
+      			</div>
       		</div>
     	)
   	}
@@ -45,9 +49,11 @@ class Board extends Component {
 
 function mapStateToProps(state){
   return {
-    TODO: state.tasks.filter(task => task.state === 'TODO'),
-    PROGRESS: state.tasks.filter(task => task.state === 'PROGRESS'),
-    DONE: state.tasks.filter(task => task.state === 'DONE')
+    TODO: state.list.tasks.filter(task => task.state === 'TODO'),
+    PROGRESS: state.list.tasks.filter(task => task.state === 'PROGRESS'),
+    DONE: state.list.tasks.filter(task => task.state === 'DONE'),
+    TODOHOURS: state.list.hoursTODO,
+    PROGRESSHOURS:state.list.hoursPROGRESS
   };
 }
 

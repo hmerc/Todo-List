@@ -1,8 +1,17 @@
 .board {
-	width:80%;
 	margin:0 auto;
 	display: flex;
 	justify-content: space-around;
+
+	h2 {
+		background: $board-title;
+		color:#ffffff;
+		text-transform: uppercase;
+		margin: 0;
+		padding:10px 0;
+		border-top-left-radius:5px;
+		border-top-right-radius:5px;
+	}
 	
 
 	&__column {
@@ -10,6 +19,7 @@
 		flex:1 0 auto;
 		height:300px;
 		border-radius: 5px;
-		min-width: 300px;
+		max-width: 300px;
+		text-align: center;
 	}
 }
