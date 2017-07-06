@@ -12,16 +12,13 @@ class NewTask extends Component {
 		this.state = { title: '',hours:0 };
 		
 		this.onInputChange = this.onInputChange.bind(this);
-		this.onInputChange2 = this.onInputChange2.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	onInputChange(event){
-		this.setState({ title: event.target.value});
-	}
-
-	onInputChange2(event){
-		this.setState({ hours: event.target.value});
+		const name = event.target.name;
+		const value = event.target.value;
+		this.setState({ [name]: event.target.value});
 	}
 
 	onFormSubmit(event){
@@ -42,8 +39,9 @@ class NewTask extends Component {
 						placeholder="Enter title here"
 						value={this.state.title}
 						onChange={this.onInputChange}
+						name="title"
 					/>
-					<input type="text"className="task_hours" placeholder="0" value={this.state.hours} onChange={this.onInputChange2}/>
+					<input type="text"className="task_hours" placeholder="0" value={this.state.hours} onChange={this.onInputChange} name="hours"/>
       			</div>
       			<button type="submit" className="btn btn-secondary">Submit</button>
       		</form>

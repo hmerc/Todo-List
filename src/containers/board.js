@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getTasks, moveProgress, moveDone, deleteTask } from '../actions/index.js';
+import { getTasks } from '../actions/index.js';
+import Task from '../components/task';
 
 class Board extends Component {
 
@@ -19,22 +20,9 @@ class Board extends Component {
 	renderTasks(tasksArray) {
 		return tasksArray.map((task) => {
 			return(
-				<div key={task.id}>
-					{task.title}
-					<button onClick={() => this.props.moveProgress(task)}> Progress</button>
-					<button onClick={() => this.props.deleteTask(task)}> Delete</button>
-				</div>
-			);
-		});
 
-	}
-
-	renderTasksProgress() {
-		return this.props.PROGRESS.map((task) => {
-			return(
-				<div key={task.id}>
-					{task.title}
-					<button onClick={() => this.props.moveDone(task)}> Done</button>
+				<div>
+					<Task task={task} key={task.id}></Task>
 				</div>
 			);
 		});
@@ -46,7 +34,7 @@ class Board extends Component {
     	return (
       		<div className="board">
       			<div className="board__column">{this.renderTasks(this.props.TODO)}</div>
-      			<div className="board__column">{this.renderTasksProgress()}</div>
+      			<div className="board__column">{this.renderTasks(this.props.PROGRESS)}</div>
       			<div className="board__column">{this.renderTasks(this.props.DONE)}</div>
       		</div>
     	)
@@ -63,4 +51,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps,{ getTasks, moveProgress, moveDone, deleteTask })(Board);
+export default connect(mapStateToProps,{ getTasks })(Board);
