@@ -23,7 +23,10 @@ class NewTask extends Component {
 
 	onFormSubmit(event){
 		event.preventDefault();
-		this.props.createTask(this.state.title, this.state.hours);
+		if(this.props.TODOHOURS < 24){
+			this.props.createTask(this.state.title, this.state.hours);
+			this.setState({ title: '',hours:0 });
+		}
 	}
 
 	render() {
@@ -50,9 +53,15 @@ class NewTask extends Component {
 
 };
 
+function mapStateToProps(state){
+	return {
+		TODOHOURS: state.list.hoursTODO
+	};
+}
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ createTask }, dispatch);
 }
 
 //whenever we a re passing in a function it needs to be in the 2nd position, the null means we dont need any state here
-export default connect(null, mapDispatchToProps)(NewTask);
+export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
