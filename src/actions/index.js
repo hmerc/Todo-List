@@ -3,6 +3,7 @@ export const GET_TASKS_TODO = 'GET_TASKS_TODO';
 export const MOVE_PROGRESS = 'MOVE_PROGRESS';
 export const MOVE_DONE = 'MOVE_DONE';
 export const DELETE_TASK = 'DELETE_TASK';
+export const MOVE_TODO = 'MOVE_TODO';
 
 export function createTask(title,hours){
 	return {
@@ -34,7 +35,14 @@ export function moveProgress(task) {
 
 export function deleteTask(task){
 	return {
-		type:DELETE_TASK,
+		type: DELETE_TASK,
+		task
+	}
+}
+
+export function moveToDo(task){
+	return {
+		type: MOVE_TODO,
 		task
 	}
 }
