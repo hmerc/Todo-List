@@ -1,4 +1,4 @@
-import { ADD_TASK, GET_TASKS_TODO, MOVE_PROGRESS, MOVE_DONE } from '../actions/index';
+import { ADD_TASK, GET_TASKS_TODO, MOVE_PROGRESS, MOVE_DONE, DELETE_TASK } from '../actions/index';
 
 const initialState = {
   tasks: []
@@ -30,6 +30,11 @@ export default function(state = [], action) {
         			});
 				}
 				return task;
+			});
+		
+		case DELETE_TASK:
+			return state.filter(function (task) {
+				return task !== action.task;
 			});
 		default:
 			return state;

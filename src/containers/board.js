@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getTasks, moveProgress, moveDone } from '../actions/index.js';
+import { getTasks, moveProgress, moveDone, deleteTask } from '../actions/index.js';
 
 class Board extends Component {
 
@@ -22,6 +22,7 @@ class Board extends Component {
 				<div key={task.id}>
 					{task.title}
 					<button onClick={() => this.props.moveProgress(task)}> Progress</button>
+					<button onClick={() => this.props.deleteTask(task)}> Delete</button>
 				</div>
 			);
 		});
@@ -33,7 +34,7 @@ class Board extends Component {
 			return(
 				<div key={task.id}>
 					{task.title}
-					<button onClick={() => this.props.moveDone(task)}> Progress</button>
+					<button onClick={() => this.props.moveDone(task)}> Done</button>
 				</div>
 			);
 		});
@@ -62,4 +63,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps,{ getTasks, moveProgress, moveDone })(Board);
+export default connect(mapStateToProps,{ getTasks, moveProgress, moveDone, deleteTask })(Board);
