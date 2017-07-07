@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { moveProgress, moveDone, deleteTask, moveToDo } from '../actions/index.js';
+import { moveProgress, moveDone, deleteTask, moveToDo, generateMessage } from '../actions/index.js';
 
 class Task extends Component {
 
 	moveToProgress(task){
 		if((this.props.PROGRESSHOURS < 8) && (this.props.PROGRESSHOURS + task.hours < 8)){
 			this.props.moveProgress(task)
+		} else {
+			this.props.generateMessage('PROGRESS cannot have more then 8 hours of text');
 		}
 	}
 
@@ -53,4 +55,4 @@ function mapStateToProps(state){
 	  };
 }
 
-export default connect(mapStateToProps,{ moveProgress, moveDone, deleteTask, moveToDo })(Task);
+export default connect(mapStateToProps,{ moveProgress, moveDone, deleteTask, moveToDo, generateMessage })(Task);

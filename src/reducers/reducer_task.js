@@ -1,4 +1,4 @@
-import { ADD_TASK, GET_TASKS_TODO, MOVE_PROGRESS, MOVE_DONE, DELETE_TASK, MOVE_TODO } from '../actions/index';
+import { ADD_TASK, GET_TASKS_TODO, MOVE_PROGRESS, MOVE_DONE, DELETE_TASK, MOVE_TODO, MESSAGE } from '../actions/index';
 
 const initialState = {
   hoursTODO: 0,
@@ -65,7 +65,8 @@ export default function(state = initialState, action) {
       				}
       				
       				return task;
-   				 })
+   				 }),
+            hoursPROGRESS: parseInt(state.hoursPROGRESS, 10) - parseInt(action.task.hours, 10)
   			});
 		
 		case DELETE_TASK:
@@ -77,6 +78,9 @@ export default function(state = initialState, action) {
       				return task;
    				 })
   			});
+    case MESSAGE:
+      return Object.assign({}, state, { message: action.message});
+
 		default:
 			return state;
 	}

@@ -4,6 +4,7 @@ export const MOVE_PROGRESS = 'MOVE_PROGRESS';
 export const MOVE_DONE = 'MOVE_DONE';
 export const DELETE_TASK = 'DELETE_TASK';
 export const MOVE_TODO = 'MOVE_TODO';
+export const MESSAGE = 'MESSAGE';
 
 export function createTask(props){
 	return {
@@ -43,5 +44,12 @@ export function moveToDo(task){
 	return {
 		type: MOVE_TODO,
 		task
+	}
+}
+
+export function generateMessage(message){
+	return {
+		type: MESSAGE,
+		message
 	}
 }
