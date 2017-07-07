@@ -1,37 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 
 import { createTask } from '../actions/index';
 
 class NewTask extends Component {
 
-	constructor(props){
-		super(props);
 
-		this.state = { title: '',hours:0 };
-		
-		this.onInputChange = this.onInputChange.bind(this);
-		this.onFormSubmit = this.onFormSubmit.bind(this);
-	}
-
-	onInputChange(event){
-		const name = event.target.name;
-		const value = event.target.value;
-		this.setState({ [name]: event.target.value});
-	}
-
-	onFormSubmit(event){
-		event.preventDefault();
+	onFormSubmit(props){
 		if(this.props.TODOHOURS < 24){
-			this.props.createTask(this.state.title, this.state.hours);
-			this.setState({ title: '',hours:0 });
+			this.props.createTask(props);
 		}
 	}
 
 	render() {
+
+		const { fields : {title, hours}, handleSubmit } = this.props;
+
     	return (
-      		<form onSubmit={this.onFormSubmit} className="task">
+      		<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="task">
       			<h2>Create a new Task</h2>
       			<div className="task__title">
       				<label>Title</label>
@@ -39,12 +27,15 @@ class NewTask extends Component {
       					type="text"
 						ref="newField"
 						className="task__new"
-						placeholder="Enter title here"
-						value={this.state.title}
-						onChange={this.onInputChange}
-						name="title"
+						{...title}
 					/>
-					<input type="text"className="task_hours" placeholder="0" value={this.state.hours} onChange={this.onInputChange} name="hours"/>
+					<div className="text-help">
+						{title.touched ? title.error : ''}
+					</div>
+					<input type="number" className="task_hours" {...hours} />
+					<div className="text-help">
+						{hours.touched ? hours.error : ''}
+					</div>
       			</div>
       			<button type="submit" className="btn btn-secondary">Submit</button>
       		</form>
@@ -52,6 +43,22 @@ class NewTask extends Component {
   	}
 
 };
+
+function validate(values) {
+	const errors = {};
+	if(!values.title) {
+		errors.title = 'Enter a Title';
+	}
+	if(!values.hours) {
+		errors.hours = 'Enter hours';
+	}
+
+	if(values.hours > 8){
+		errors.hours = 'Task Time cannot be more than 8 hours';
+	}
+
+	return errors;
+}
 
 function mapStateToProps(state){
 	return {
@@ -64,4 +71,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 //whenever we a re passing in a function it needs to be in the 2nd position, the null means we dont need any state here
-export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
+//export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
+
+export default reduxForm({
+form: 'PostsNewForm',
+fields: ['title','hours'],
+validate
+}, mapStateToProps, mapDispatchToProps)(NewTask);

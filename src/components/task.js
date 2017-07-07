@@ -6,7 +6,7 @@ import { moveProgress, moveDone, deleteTask, moveToDo } from '../actions/index.j
 class Task extends Component {
 
 	moveToProgress(task){
-		if(this.props.PROGRESSHOURS <= 8){
+		if((this.props.PROGRESSHOURS < 8) && (this.props.PROGRESSHOURS + task.hours < 8)){
 			this.props.moveProgress(task)
 		}
 	}
@@ -16,7 +16,7 @@ class Task extends Component {
 		if(this.props.task.state === 'TODO' && this.props.task.state !== 'DONE'){
 			return (
 				<div>
-					{this.props.task.title}
+					{this.props.task.title} {this.props.task.hours} hours
 					<div>
 						<button onClick={() => this.moveToProgress(this.props.task)}> Start</button>
 						<button onClick={() => this.props.deleteTask(this.props.task)}> Delete</button>

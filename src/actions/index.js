@@ -5,11 +5,10 @@ export const MOVE_DONE = 'MOVE_DONE';
 export const DELETE_TASK = 'DELETE_TASK';
 export const MOVE_TODO = 'MOVE_TODO';
 
-export function createTask(title,hours){
+export function createTask(props){
 	return {
 		type: ADD_TASK,
-		title,
-		hours
+		props
 	};
 }
 

@@ -15,12 +15,12 @@ export default function(state = initialState, action) {
         			tasks: [
           				...state.tasks,
          				{
-            				title:action.title,
-            				hours:action.hours,
+            				title:action.props.title,
+            				hours:action.props.hours,
             				state:'TODO'
           				}
         			],
-        			hoursTODO: parseInt(state.hoursTODO, 10) + parseInt(action.hours, 10)
+        			hoursTODO: parseInt(state.hoursTODO, 10) + parseInt(action.props.hours, 10)
       			});
 			
 		
