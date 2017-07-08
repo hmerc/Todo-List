@@ -5,6 +5,8 @@ export const MOVE_DONE = 'MOVE_DONE';
 export const DELETE_TASK = 'DELETE_TASK';
 export const MOVE_TODO = 'MOVE_TODO';
 export const MESSAGE = 'MESSAGE';
+export const EDIT_SAVE_TASK = 'EDIT_SAVE_TASK';
+export const EDIT_TASK = 'EDIT_TASK';
 
 export function createTask(props){
 	return {
@@ -44,6 +46,20 @@ export function moveToDo(task){
 	return {
 		type: MOVE_TODO,
 		task
+	}
+}
+
+export function editSaveTask(props){
+	return {
+		type: EDIT_SAVE_TASK,
+		props
+	}
+}
+
+export function editTask(edit){
+	return {
+		type: EDIT_TASK,
+		edit
 	}
 }
 

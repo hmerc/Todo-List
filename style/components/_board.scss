@@ -5,12 +5,13 @@
 
 	h2 {
 		background: $board-title;
-		color:#ffffff;
 		text-transform: uppercase;
 		margin: 0;
 		padding:10px 0;
 		border-top-left-radius:5px;
 		border-top-right-radius:5px;
+		box-shadow: 0 2px 1px 0px #dcdcdc;
+		border-bottom:1px solid #f3f3f3;
 	}
 	
 
@@ -18,7 +19,7 @@
 		background-color: $board-columns-background;
 		flex:1 0 auto;
 		height:300px;
-		border-radius: 5px;
+		border-radius: 3px;
 		max-width: 300px;
 		text-align: center;
 	}

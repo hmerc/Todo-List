@@ -1,10 +1,11 @@
-import { ADD_TASK, GET_TASKS_TODO, MOVE_PROGRESS, MOVE_DONE, DELETE_TASK, MOVE_TODO, MESSAGE } from '../actions/index';
+import { ADD_TASK, GET_TASKS_TODO, MOVE_PROGRESS, MOVE_DONE, DELETE_TASK, MOVE_TODO, MESSAGE, EDIT_SAVE_TASK, EDIT_TASK } from '../actions/index';
 
 const initialState = {
   hoursTODO: 0,
   hoursPROGRESS:0,
   message:'',
-  tasks: []
+  tasks: [],
+  editTask:false
 }
 
 export default function(state = initialState, action) {
@@ -80,6 +81,23 @@ export default function(state = initialState, action) {
   			});
     case MESSAGE:
       return Object.assign({}, state, { message: action.message});
+
+    case EDIT_SAVE_TASK:
+      return Object.assign({}, state, {
+        tasks: state.tasks.map((task) => {
+              if (task.id === action.props.id) {
+                return Object.assign({}, task, {
+                    title: action.props.title,
+                    hours: action.props.hours
+                });
+              }
+              
+              return task;
+           })
+        });
+
+    case EDIT_TASK: 
+      return Object.assign({}, state, { editTask :action.edit });
 
 		default:
 			return state;

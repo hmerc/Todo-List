@@ -19,26 +19,30 @@ class NewTask extends Component {
 		const { fields : {title, hours}, handleSubmit } = this.props;
 
     	return (
-      		<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="task">
-      			<h2>Create a new Task</h2>
-      			<div className="task__title">
-      				<label>Title</label>
-      				<input
-      					type="text"
-						ref="newField"
-						className="task__new"
-						{...title}
-					/>
-					<div className="text-help">
-						{title.touched ? title.error : ''}
+    		<div>
+    			<h2>Create a new Task</h2>
+      			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="task--new">
+      				<div className="task--new__title">
+      					<label>Title: </label>
+      					<input
+      						type="text"
+							ref="newField"
+							{...title}
+						/>
+						<div className="text-help">
+							{title.touched ? title.error : ''}
+						</div>
 					</div>
-					<input type="number" className="task_hours" {...hours} />
-					<div className="text-help">
-						{hours.touched ? hours.error : ''}
-					</div>
-      			</div>
-      			<button type="submit" className="btn btn-secondary">Submit</button>
-      		</form>
+					<div className="task--new__hours">
+						<label>Hours: </label>
+						<input type="number" className="task_hours" {...hours} />
+						<div className="text-help">
+							{hours.touched ? hours.error : ''}
+						</div>
+      				</div>
+      				<button type="submit" className="task--new__add">+</button>
+      			</form>
+      		</div>
     	);
   	}
 
