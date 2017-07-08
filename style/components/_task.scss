@@ -56,10 +56,18 @@
 		display: flex;
 		background:$board-columns-background;
 		border-radius: 10px;
-		max-width: 268px;
     	padding: 15px;
     	margin-left: 33px;
     	margin-bottom: 20px;
+    	flex-direction: column;
+    	max-width: 269px;
+
+    	label {
+    		display: block;
+    	}
+
+    	input, textarea { width: 100%; }
+
 	}
 
 	&--new__hours input{
@@ -68,12 +76,9 @@
 
 	&--new__add {
 		
-		border-radius:50px;
-		height: 40px;
-    	width: 40px;
-    	font-size: 26px;
-		background: none;
-		border:2px solid #ef6b27;
-		color:#ef6b27;
+		background-color: #5fb1f9;
+		color:#ffffff;
+		border:none;
+		float: right;
 	}
 }

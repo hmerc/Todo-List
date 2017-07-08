@@ -37,9 +37,10 @@ export default function(state = initialState, action) {
           					state: 'DONE'
         				});
       				}
-      				
       				return task;
-   				 })
+   				 }),
+           hoursTODO: parseInt(state.hoursTODO, 10) - parseInt(action.task.hours, 10),
+           hoursPROGRESS: parseInt(state.hoursPROGRESS, 10) - parseInt(action.task.hours, 10)
    			});
 
 		case MOVE_PROGRESS:

@@ -40,11 +40,12 @@ class NewTask extends Component {
 					<div className="task--new__hours">
 						<label>Hours: </label>
 						<input type="number" className="task_hours" {...hours} />
+						<button type="submit" className="task--new__add">ADD</button>
 						<div className="text-help">
 							{hours.touched ? hours.error : ''}
 						</div>
       				</div>
-      				<button type="submit" className="task--new__add">+</button>
+      				
       			</form>
       		</div>
     	);

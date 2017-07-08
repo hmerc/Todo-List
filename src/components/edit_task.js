@@ -16,20 +16,19 @@ class EditTask extends Component {
 
 	render() {
 
-		const { fields : {title, hours}, handleSubmit } = this.props;
+		const { fields : {title, hours, description}, handleSubmit } = this.props;
 
     	return (
-    		<div>
+    		<div className="task">
       			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="task--new">
-      				<div className="task--new__title">
-      					<input
-      						type="text"
-							ref="newField"
-							{...title}
-						/>
-					</div>
-					<div className="task--new__hours">
-						<input type="number" className="task_hours" {...hours} />
+      				<div className="task__title">
+      					<input type="text" ref="newField" {...title} />
+					    </div>
+              <div className="task__description">
+                <textarea type="text" className="form-control" {...description} />
+              </div>
+					    <div className="task__hours">
+						    <input type="number" className="task_hours" {...hours} />
       				</div>
       				<button type="submit" className="task--new__add">Save</button>
       			</form>
@@ -43,7 +42,8 @@ function mapStateToProps(state, props) {
  	return {
     	initialValues: {
      		title: props.task.title,
-      		hours: props.task.hours
+      	hours: props.task.hours,
+        description: props.task.description
     	}
 	}
 }
@@ -55,6 +55,6 @@ function mapDispatchToProps(dispatch) {
 
 export default reduxForm({
 form: 'EditForm',
-fields: ['title','hours'],
+fields: ['title','hours','description'],
 enableReinitialize : true
 }, mapStateToProps, mapDispatchToProps)(EditTask);
