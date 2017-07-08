@@ -18,6 +18,7 @@ export default function(state = initialState, action) {
          				{
             				title:action.props.title,
             				hours:action.props.hours,
+                    description:action.props.description,
             				state:'TODO'
           				}
         			],
@@ -88,7 +89,8 @@ export default function(state = initialState, action) {
               if (task.id === action.props.id) {
                 return Object.assign({}, task, {
                     title: action.props.title,
-                    hours: action.props.hours
+                    hours: action.props.hours,
+                    description: action.props.description
                 });
               }
               

@@ -1,5 +1,56 @@
 .task {
 
+	background: $task-background;
+	border-radius: 5px;
+	position: relative;
+	margin:10px;
+	padding:5px 10px;
+	text-align: left;
+	color:#78797a;
+
+	&__title {
+		font-size: 15px;
+		border-bottom:1px solid #78797a;
+		margin-bottom: 5px;
+		min-height: 30px;
+	}
+
+	&__delete {
+		float: right;
+		font-size: 13px;
+		font-weight: bold;
+		color:#ffffff;
+		background: #5fb1f9;
+		border-radius: 50px;
+		padding: 5px 8px;
+
+
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		border-top-left-radius:5px;
+		border-bottom-left-radius:5px;
+		background: #fe8520;
+		width:5px;
+		height: 100%;
+    	left: 0;
+    	top: 0;
+    	border-right:1px solid #d97c2f;
+	}
+
+	&__buttons{
+		display: flex;
+		margin:5px;
+
+		button {
+			flex:1 0 auto;
+			background-color: #5fb1f9;
+			border:none;
+			color:#ffffff;
+		}
+	}
 
 	&--new {
 		display: flex;

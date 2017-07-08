@@ -21,36 +21,34 @@ class Task extends Component {
 	render(){
 
 		if(this.props.showEditTask === false){
-			if(this.props.task.state === 'TODO' && this.props.task.state !== 'DONE'){
-				return (
-					<div>
-						{this.props.task.title} {this.props.task.hours} hours
-						<div>
-							<button onClick={() => this.moveToProgress(this.props.task)}> Start</button>
-							<button onClick={() => this.props.deleteTask(this.props.task)}> Delete</button>
-							<button onClick={() => this.props.editTask(true)}>Edit</button>
-						</div>
-					</div>
-				);
-			}
 
-			if(this.props.task.state === 'PROGRESS' && this.props.task.state !== 'DONE'){
-    			return (
-      				<div>
-						{this.props.task.title}
-						<div>
-							<button onClick={() => this.props.moveToDo(this.props.task)}>TODO</button>
-							<button onClick={() => this.props.moveDone(this.props.task)}> Finish</button>
-						</div>
+			const taskState = this.props.task.state;
+			
+			return (
+				<div className="task">
+					<div className="task__title">
+						{this.props.task.title} 
+						<span 
+							onClick={() => this.props.deleteTask(this.props.task)} 
+							className={taskState !== 'PROGRESS' && taskState !== 'DONE' ? 'task__delete' : 'hidden'}>X</span>
 					</div>
-    			);
-  			} else {
-  				return (
-      				<div>
-						{this.props.task.title}
+					<div className="task__description">
+						{this.props.task.description} 
 					</div>
-				);
-  			}
+					<div>
+						<label>Hours:</label>{this.props.task.hours}
+					</div>
+					<div className={taskState === 'TODO' && taskState !== 'DONE' ? 'task__buttons' : 'hidden'} >
+						<button onClick={() => this.moveToProgress(this.props.task)}> START</button>
+						<button onClick={() => this.props.editTask(true)}>EDIT</button>
+					</div>
+
+					<div className={taskState === 'PROGRESS' && taskState !== 'DONE' ? 'task__buttons' : 'hidden'} >
+						<button onClick={() => this.props.moveToDo(this.props.task)}>TODO</button>
+						<button onClick={() => this.props.moveDone(this.props.task)}> FINISH</button>
+					</div>
+				</div>
+			);
   		} else {
   			return ( <EditTask task={this.props.task}/>);
   		}

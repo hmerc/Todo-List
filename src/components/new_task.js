@@ -16,7 +16,7 @@ class NewTask extends Component {
 
 	render() {
 
-		const { fields : {title, hours}, handleSubmit } = this.props;
+		const { fields : {title, hours, description}, handleSubmit } = this.props;
 
     	return (
     		<div>
@@ -32,6 +32,10 @@ class NewTask extends Component {
 						<div className="text-help">
 							{title.touched ? title.error : ''}
 						</div>
+					</div>
+					<div className="task--new__description">
+						<label>Description</label>
+						<textarea type="text" className="form-control" {...description} />
 					</div>
 					<div className="task--new__hours">
 						<label>Hours: </label>
@@ -79,6 +83,6 @@ function mapDispatchToProps(dispatch) {
 
 export default reduxForm({
 form: 'PostsNewForm',
-fields: ['title','hours'],
+fields: ['title','hours','description'],
 validate
 }, mapStateToProps, mapDispatchToProps)(NewTask);
