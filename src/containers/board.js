@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { getTasks } from '../actions/index.js';
 import Task from '../components/task';
+import NewTask from '../components/new_task';
 
 class Board extends Component {
 
@@ -28,15 +29,16 @@ class Board extends Component {
     		<div>
       			<div className="board">
       				<div className="board__column">
-      					<h2>To Do <span className="board__hours">[{this.props.TODOHOURS} Hours]</span></h2>
+      					<h2>To-do List <span className="board__hours">{this.props.TODOHOURS} Hours</span></h2>
       					{this.renderTasks(this.props.TODO)}
+                <NewTask />
       				</div>
       				<div className="board__column">
-      					<h2>Progress <span className="board__hours">[{this.props.PROGRESSHOURS} Hours]</span></h2>
+      					<h2>In Progress <span className="board__hours">{this.props.PROGRESSHOURS} Hours</span></h2>
       					{this.renderTasks(this.props.PROGRESS)}
       				</div>
       				<div className="board__column">
-      					<h2>Done</h2>
+      					<h2>Completed</h2>
       					{this.renderTasks(this.props.DONE)}
       				</div>
       			</div>

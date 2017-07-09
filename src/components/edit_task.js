@@ -30,7 +30,9 @@ class EditTask extends Component {
 					    <div className="task__hours">
 						    <input type="number" className="task_hours" {...hours} />
       				</div>
-      				<button type="submit" className="task--new__add">Save</button>
+              <div className="task__buttons">
+      				  <button type="submit" className="task--new__add">Save</button>
+              </div>
       			</form>
       		</div>
     	);

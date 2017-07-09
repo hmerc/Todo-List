@@ -79,7 +79,8 @@ export default function(state = initialState, action) {
         				return task !== action.task;
       				}
       				return task;
-   				 })
+   				 }),
+           hoursTODO: parseInt(state.hoursTODO, 10) - parseInt(action.task.hours, 10)
   			});
     case MESSAGE:
       return Object.assign({}, state, { message: action.message});

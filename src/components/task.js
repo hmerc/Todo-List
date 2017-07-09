@@ -11,10 +11,10 @@ class Task extends Component {
 	}
 
 	moveToProgress(task){
-		if((this.props.PROGRESSHOURS < 8) && (this.props.PROGRESSHOURS + task.hours < 8)){
+		if(parseInt(this.props.PROGRESSHOURS,10) + parseInt(task.hours,10) <= 8){
 			this.props.moveProgress(task)
 		} else {
-			this.props.generateMessage('PROGRESS cannot have more then 8 hours of text');
+			this.props.generateMessage('PROGRESS cannot have more than 8 hours of tasks');
 		}
 	}
 

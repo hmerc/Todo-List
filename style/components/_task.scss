@@ -8,11 +8,20 @@
 	text-align: left;
 	color:#78797a;
 
+	&__heading {
+		font-size: 15px;
+		font-weight: bold;
+		margin-bottom:5px;
+	}
+
 	&__title {
 		font-size: 15px;
 		border-bottom:1px solid #78797a;
 		margin-bottom: 5px;
 		min-height: 30px;
+		display: flex;
+    	align-items: center;
+    	justify-content: space-between;
 	}
 
 	&__delete {
@@ -49,36 +58,28 @@
 			background-color: #5fb1f9;
 			border:none;
 			color:#ffffff;
+			padding:10px 0;
 		}
+	}
+
+	&__help{
+		color:#eb5e1f;
+		
 	}
 
 	&--new {
 		display: flex;
-		background:$board-columns-background;
-		border-radius: 10px;
-    	padding: 15px;
-    	margin-left: 33px;
-    	margin-bottom: 20px;
     	flex-direction: column;
-    	max-width: 269px;
+
+    	.task__title {
+    		border-bottom: none;
+    	}
 
     	label {
     		display: block;
     	}
 
-    	input, textarea { width: 100%; }
+    	input, textarea { width: 100%; max-width: 100%;}
 
-	}
-
-	&--new__hours input{
-		max-width:50px;
-	}
-
-	&--new__add {
-		
-		background-color: #5fb1f9;
-		color:#ffffff;
-		border:none;
-		float: right;
 	}
 }
