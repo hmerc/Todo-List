@@ -8,9 +8,23 @@ import NewTask from '../components/new_task';
 
 class Board extends Component {
 
+  constructor(props){
+    super(props);
+
+    this.state = { todoOpen: true, progressOpen:true, completeOpen:true };
+    this.openColumn = this.openColumn.bind(this);
+  }
+
 	componentWillMount() {
 		this.props.getTasks();
 	}
+
+  openColumn(event){
+
+    this.setState({ todoOpen: !this.state.todoOpen});
+    console.log(this.state.todoOpen);
+
+  }
 
 	renderTasks(tasksArray) {
 		return tasksArray.map((task) => {
@@ -29,9 +43,11 @@ class Board extends Component {
     		<div>
       			<div className="board">
       				<div className="board__column">
-      					<h2>To-do List <span className="board__hours">{this.props.TODOHOURS} Hours</span></h2>
-      					{this.renderTasks(this.props.TODO)}
-                <NewTask />
+      					<h2>To-do List <span className="board__hours">{this.props.TODOHOURS} Hours <button className="task__mobile" onClick={() => this.openColumn(event)}>-</button></span></h2>
+                <div className={this.state.todoOpen ? 'show' : 'hide'}>
+      					   {this.renderTasks(this.props.TODO)}
+                    <NewTask />
+                </div>
       				</div>
       				<div className="board__column">
       					<h2>In Progress <span className="board__hours">{this.props.PROGRESSHOURS} Hours</span></h2>
