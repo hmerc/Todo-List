@@ -28,11 +28,11 @@ class Board extends Component {
     		<div>
       			<div className="board">
       				<div className="board__column">
-      					<h2>To Do [{this.props.TODOHOURS} Hours]</h2>
+      					<h2>To Do <span className="board__hours">[{this.props.TODOHOURS} Hours]</span></h2>
       					{this.renderTasks(this.props.TODO)}
       				</div>
       				<div className="board__column">
-      					<h2>Progress [{this.props.PROGRESSHOURS} Hours]</h2>
+      					<h2>Progress <span className="board__hours">[{this.props.PROGRESSHOURS} Hours]</span></h2>
       					{this.renderTasks(this.props.PROGRESS)}
       				</div>
       				<div className="board__column">
