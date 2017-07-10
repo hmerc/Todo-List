@@ -9,7 +9,6 @@ class EditTask extends Component {
 
 
 	onFormSubmit(props){
-		console.log(props);
 		this.props.editSaveTask(props);
 		this.props.editTask(false);
 	}

@@ -1,11 +1,18 @@
 $primary-color: #62a6b3;
 $secondary-color:#e8e8e8;
 $tertiary-color:#efefef;
+$highlight-color:#fe8520;
 $text-color:#5d5d5d;
+$text-secondary-color:#828282;
 
 
 $board-background: $primary-color;
 $board-columns-background: $secondary-color;
 $board-title: $tertiary-color;
+$board-hours: $text-secondary-color;
 
 $task-background:#ffffff;
+$task-color:#78797a;
+$task-button: #5fb1f9;
+$task-button-color:#ffffff;
+$task-error:#eb5e1f;
